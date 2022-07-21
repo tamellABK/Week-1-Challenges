@@ -19,6 +19,7 @@ void Player::DecreaseHeath(short int decreaseAmt)
 	}
 
 	//Call base method since everything else should be the same logic
+	Entity::DecreaseHeath(newAmt);
 }
 
 void Player::Block()
