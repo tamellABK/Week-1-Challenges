@@ -8,7 +8,7 @@ void PopulateArray(int* arrayPtr, int arraySize);
 
 int main()
 {
-    // Prompt/Save numbers
+    // Initialize Ints
     int sum, average, inputNum;
 
     
@@ -17,6 +17,7 @@ int main()
         cout << "How many numbers will you type?: ";
         cin >> inputNum;
 
+        // Validate input, break if input passes
         if (cin.fail())
         {
             cin.clear();
@@ -31,12 +32,14 @@ int main()
 
     PopulateArray(intArray, inputNum);
 
+    // Calculation on Array Integers
     sum = SumArrayInts(intArray, inputNum);
     average = AverageInts(sum, inputNum);
 
     // Output Results
     cout << "Sum: " << sum << endl << "Average: " << average << endl;
 
+    // Cleanup
     delete[] intArray;
     intArray = nullptr;
 }
@@ -66,6 +69,8 @@ void PopulateArray(int* arrayPtr, int arraySize)
         if (cin.fail()) {
             cin.clear();
             cin.ignore(99999, '\n');
+
+            // Run back a loop cycle since input didn't validate
             i--;
         }
         else 
