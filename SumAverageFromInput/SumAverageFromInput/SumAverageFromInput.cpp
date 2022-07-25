@@ -1,23 +1,76 @@
-// SumAverageFromInput.cpp : This file contains the 'main' function. Program execution begins and ends there.
-
 #include <iostream>
 
 using namespace std;
 
+int AverageInts(int sum, int numOfValues);
+int SumArrayInts(int* arrayPtr, int arraySize);
+void PopulateArray(int* arrayPtr, int arraySize);
+
 int main()
 {
     // Prompt/Save numbers
-    int first, second, third;
-    cout << "Input First Number: ";
-    cin >> first;
+    int sum, average, inputNum;
 
-    cout << "Input Second Number: ";
-    cin >> second;
+    
+    while (true)
+    {
+        cout << "How many numbers will you type?: ";
+        cin >> inputNum;
 
-    cout << "Input Third Number: ";
-    cin >> third;
+        if (cin.fail())
+        {
+            cin.clear();
+            cin.ignore(99999, '\n');
+            continue;
+        }
+        break;
+    }
+    
 
-    // Calculate and Output Results
-    cout << "Sum: " << (first + second + third) << endl <<
-        "Average: " << (first + second + third) / 3 << endl;
+    int* intArray = new int[inputNum];
+
+    PopulateArray(intArray, inputNum);
+
+    sum = SumArrayInts(intArray, inputNum);
+    average = AverageInts(sum, inputNum);
+
+    // Output Results
+    cout << "Sum: " << sum << endl << "Average: " << average << endl;
+
+    delete[] intArray;
+    intArray = nullptr;
+}
+
+int AverageInts(int sum, int numOfValues)
+{
+    return sum / numOfValues;
+}
+
+int SumArrayInts(int* arrayPtr, int arraySize)
+{
+    int totalValue = 0;
+    for (int i = 0; i < arraySize; i++)
+    {
+        totalValue += arrayPtr[i];
+    }
+    return totalValue;
+}
+
+void PopulateArray(int* arrayPtr, int arraySize)
+{
+    for (int i = 0; i < arraySize; i++)
+    {
+        cout << "Input A Number: ";
+        int input;
+        cin >> input;
+        if (cin.fail()) {
+            cin.clear();
+            cin.ignore(99999, '\n');
+            i--;
+        }
+        else 
+        {
+            arrayPtr[i] = input;
+        }
+    }
 }
