@@ -20,9 +20,7 @@ int main()
 
         if (!cin.fail()) break;
         InvalidInputEvent();
-        continue;
     }
-    
     cout << PowerValue(input) << endl;
 }
 
