@@ -7,19 +7,35 @@ using namespace std;
 
 // Power Function, Defaults to Cubed
 long int PowerValue(int number, int power = 3);
+void InvalidInputEvent();
 
 int main()
 {
-    cout << PowerValue(5) << endl;
+    int input;
+
+    while (true)
+    {
+        cout << "Enter a number: ";
+        cin >> input;
+
+        if (!cin.fail()) break;
+        InvalidInputEvent();
+        continue;
+    }
+    
+    cout << PowerValue(input) << endl;
 }
 
 long int PowerValue(int number, int power) {
     // Break if power amount has reached zero
-    if (power == 0) {
-        return 1;
-    }
-    // Else multiple number and lower power amount by 1
-    else {
-        return number * PowerValue(number, power - 1);
-    }
+    if (power == 0) return 1;
+    return number * PowerValue(number, power - 1);
+}
+
+void InvalidInputEvent() 
+{
+    cin.clear();
+    cin.ignore(99999, '\n');
+    system("cls");
+    cout << "Invalid Input!" << endl;
 }
