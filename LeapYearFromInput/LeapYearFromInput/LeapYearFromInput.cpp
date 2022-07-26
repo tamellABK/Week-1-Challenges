@@ -10,20 +10,17 @@ void InvalidInputEvent();
 
 int main()
 {
+    unsigned int inputYear;
+
     while (true)
     {
         cout << "Please input a year to test if it's a leap year: ";
-        unsigned int inputYear;
         cin >> inputYear;
 
-        if (cin.fail()) {
-            InvalidInputEvent();
-            continue;
-        }
-
-        LeapYearCheck(inputYear);
-        break;
+        if (!cin.fail()) break;
+        InvalidInputEvent();
     }
+    LeapYearCheck(inputYear);
 }
 
 void LeapYearCheck(int year)
@@ -45,14 +42,14 @@ bool YearFactorOf4(int year)
     return true;
 }
 
-bool CenturyFactorOf400(int year) 
+bool CenturyFactorOf400(int year)
 {
     if (year % 100 == 0 && year % 400 != 0) return false;
     return true;
 }
 
 // Clear cin and warn user
-void InvalidInputEvent() 
+void InvalidInputEvent()
 {
     cin.clear();
     cin.ignore(99999, '\n');
